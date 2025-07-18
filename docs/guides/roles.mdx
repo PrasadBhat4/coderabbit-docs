@@ -3,11 +3,15 @@ title: Control administrative access
 description: Using the role-based authorization features of CodeRabbit
 ---
 
+import ListItems from '@site/src/components/ListItems';
+import Note from '@site/src/components/Note';
+import Table from '@site/src/components/Table';
+
 You can control which CodeRabbit
 administrative features are available to your organization's user accounts by
 assigning and updating account roles.
 
-## Overview of CodeRabbit roles {#overview}
+## Overview of CodeRabbit roles
 
 Every CodeRabbit account has exactly one role for each organization
 that account is associated with.
@@ -19,11 +23,13 @@ CodeRabbit roles determine your ability to read or change various
 billing, account management, and other administrative functions related to
 an organization. The roles are as follows:
 
-- **Admin**: allows full read/write access to all CodeRabbit administrative features.
-- **Member**: allows read-only access to a limited set of administrative settings. This role
-  is appropriate for most developers in an organization.
-- **Billing Admin**: allows read/write access to features specific
-  to a subscription and billing management, and limited access to other administrative features.
+<ListItems
+  items={[
+    <><strong>Admin</strong>: allows full read/write access to all CodeRabbit administrative features.</>,
+    <><strong>Member</strong>: allows read-only access to a limited set of administrative settings. This role is appropriate for most developers in an organization.</>,
+    <><strong>Billing Admin</strong>: allows read/write access to features specific to a subscription and billing management, and limited access to other administrative features.</>
+  ]}
+/>
 
 CodeRabbit users with the **Admin** role can modify the roles of other users in the
 organization.
@@ -55,10 +61,12 @@ For more information on seat and subscription management, see [Manage your subsc
 CodeRabbit assigns every user account in your organization a default role,
 using the following metrics:
 
-- If a user has an ownership-level role with the Git platform organization—for example,
-  **Admin** on GitHub, or **Owner** on Bitbucket—then that user receives the default
-  CodeRabbit role of **Admin**.
-- Otherwise, the user receives the **Member** role by default.
+<ListItems
+  items={[
+    <>If a user has an ownership-level role with the Git platform organization—for example, <strong>Admin</strong> on GitHub, or <strong>Owner</strong> on Bitbucket—then that user receives the default CodeRabbit role of <strong>Admin</strong>.</>,
+    <>Otherwise, the user receives the <strong>Member</strong> role by default.</>
+  ]}
+/>
 
 You can update a user's role from its default setting by following the steps detailed in the next section. This requires that your own account
 has an **Admin** role with the organization.
@@ -76,9 +84,14 @@ following sections.
 
 To view a list of your organization's role assignments, follow these steps:
 
-1. Go to the [CodeRabbit dashboard](https://app.coderabbit.ai/settings/repositories).
-1. At the top of the sidebar, select the organization whose user roles you want to view.
-1. On the sidebar, click **Subscription**.
+<ListItems
+  orderedList={true}
+  items={[
+    <>Go to the <a href="https://app.coderabbit.ai/settings/repositories">CodeRabbit dashboard</a>.</>,
+    <>At the top of the sidebar, select the organization whose user roles you want to view.</>,
+    <>On the sidebar, click <strong>Subscription</strong>.</>
+  ]}
+/>
 
 This displays a table of all of the CodeRabbit **Admin** and **Member** accounts associated with the selected
 organization. In this table, the **Role** column displays the CodeRabbit role for
@@ -88,31 +101,39 @@ To view a list of accounts with the **Billing Admin** role, click the **Billing 
 
 ### Set roles {#set-roles}
 
-:::note
+<Note>
 To modify users' CodeRabbit accounts, your own account must have the **Admin** role within your organization.
-:::
+</Note>
 
 To change a user account's CodeRabbit role, follow these steps:
 
-1. Go to your organization's list of user accounts, as detailed in the previous section.
-   If you have the **Admin** role within this organization, then the **Role** column in the user accounts table contains selectable menus.
-1. Click the menu in the user's **Role** column, and select the appropriate role from
-   the list.
+<ListItems
+  orderedList={true}
+  items={[
+    <>Go to your organization's list of user accounts, as detailed in the previous section. If you have the <strong>Admin</strong> role within this organization, then the <strong>Role</strong> column in the user accounts table contains selectable menus.</>,
+    <>Click the menu in the user's <strong>Role</strong> column, and select the appropriate role from the list.</>
+  ]}
+/>
 
 The only roles you can assign through this method are **Admin** and **Member**.
 You can't grant the **Billing Admin** role to an existing user account. To add an account with the **Billing Admin** role, see the next section.
 
 ### Add billing admin accounts {#billing}
 
-:::note
+<Note>
 Billing Admin users don't require CodeRabbit seat licenses. You can add Billing Admin users regardless of how many seat licenses you have available.
-:::
+</Note>
 
 To add a CodeRabbit user account with the **Billing Admin** role, follow these steps:
 
-1. Go to your organization's list of user accounts, as detailed in [View roles](#view-roles).
-1. Click **Invite Billing Admin**.
-1. Enter the name and email address of the billing administrator who you want to invite to the organization.
+<ListItems
+  orderedList={true}
+  items={[
+    <>Go to your organization's list of user accounts, as detailed in <a href="#view-roles">View roles</a>.</>,
+    <>Click <strong>Invite Billing Admin</strong>.</>,
+    <>Enter the name and email address of the billing administrator who you want to invite to the organization.</>
+  ]}
+/>
 
 This sends an email to the address that you specified. After the recipient completes the process of joining your organization in CodeRabbit, then their record appears in the user accounts list, under the **Billing Admins** tab.
 
@@ -121,17 +142,75 @@ This sends an email to the address that you specified. After the recipient compl
 The following table lists the CodeRabbit administrative functionality
 available to each of the CodeRabbit roles.
 
-| Resource                | Admin      | Member    | Billing Admin |
-| ----------------------- | ---------- | --------- | ------------- |
-| Learning Resources      | Read/Write | Read-only | No access     |
-| Metrics/Dashboard       | Read/Write | No access | No access     |
-| Reports                 | Read/Write | Read-only | No access     |
-| Integrations            | Read/Write | Read-only | No access     |
-| Repository Settings     | Read/Write | Read-only | No access     |
-| Organization Settings   | Read/Write | Read-only | No access     |
-| User Management         | Read/Write | Read-only | Read-only     |
-| Subscription Management | Read/Write | Read-only | Read/Write    |
-| Billing Management      | Read/Write | No access | Read/Write    |
+<Table
+  columns={[
+    { key: 'resource', label: 'Resource' },
+    { key: 'admin', label: 'Admin' },
+    { key: 'member', label: 'Member' },
+    { key: 'billing_admin', label: 'Billing Admin' }
+  ]}
+  sections={[
+    {
+      title: '',
+      rows: [
+        {
+          resource: 'Learning Resources',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'Metrics/Dashboard',
+          admin: 'Read/Write',
+          member: 'No access',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'Reports',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'Integrations',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'Repository Settings',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'Organization Settings',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'No access'
+        },
+        {
+          resource: 'User Management',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'Read-only'
+        },
+        {
+          resource: 'Subscription Management',
+          admin: 'Read/Write',
+          member: 'Read-only',
+          billing_admin: 'Read/Write'
+        },
+        {
+          resource: 'Billing Management',
+          admin: 'Read/Write',
+          member: 'No access',
+          billing_admin: 'Read/Write'
+        }
+      ]
+    }
+  ]}
+/>
 
 ## What's next {#whats-next}
 

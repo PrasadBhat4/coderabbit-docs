@@ -26,7 +26,7 @@
 	width: 0.3em !important;
 	height: 0.3em !important;
 	top: 0.65em !important;
-	background: #333 !important;
+	background: var(--ifm-color-content) !important;
 }
 
 .crNestedList .crNestedLevel2 li {
@@ -79,7 +79,7 @@
 	top: 0.6em;
 	width: 0.4em;
 	height: 0.4em;
-	background: #333;
+	background: var(--ifm-color-content);
 	border-radius: 50%;
 	display: inline-block;
 }
